@@ -13,7 +13,7 @@ export default function Home() {
     const chainString = chainId ? parseInt(chainId).toString() : "11155111"
     const marketplaceAddress = chainId
         ? networkMapping[chainString]?.NftMarketplace[0]
-        : "0x4f569DA63a4c349fF96962Db5f2F7Eb0E9380640"
+        : "0x7813F14FBA40009A21bAB2EF0C83860786045Ea8"
     //const dispatch = useNotification()
     const [proceeds, setProceeds] = useState("0")
 

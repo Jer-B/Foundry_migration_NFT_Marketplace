@@ -45,13 +45,13 @@ cd Foundry_migration_NFT_Marketplace/contracts
 ### Foundry Initialization
 
 ```
-forge init
+forge init --no-commit
 ```
 
 - Install dependencies
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit && forge install @chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1 --no-commit
+forge install cyfrin/foundry-devops@0.0.11 --no-commit && forge install OpenZeppelin/openzeppelin-contracts --no-commit
 ```
 
 #### Contracts deployment
@@ -155,13 +155,13 @@ cd Foundry_migration_NFT_Marketplace/contracts
 ### Foundry の初期化
 
 ```
-forge init
+forge init --no-commit
 ```
 
 - 依存関係のインストール
 
 ```bash
-forge install OpenZeppelin/openzeppelin-contracts@v4.2.0 --no-commit && forge install @chainlink=smartcontractkit/chainlink-brownie-contracts@0.2.1 --no-commit
+forge install cyfrin/foundry-devops@0.0.11 --no-commit && forge install OpenZeppelin/openzeppelin-contracts --no-commit
 ```
 
 #### コントラクトのデプロイメント

@@ -8,7 +8,9 @@ import { useQuery } from "@apollo/client"
 import GET_ACTIVE_ITEMS from "@/constants/subgraphQueries"
 
 export default function Home() {
-    const { isWeb3Enabled, chainId } = useMoralis()
+    // const { isWeb3Enabled, chainId } = useMoralis()
+    const { isWeb3Enabled } = useMoralis()
+    const chainId = "11155111"
 
     const chainString = chainId ? parseInt(chainId).toString() : "11155111"
     console.log("chainId:", chainId)
@@ -17,7 +19,7 @@ export default function Home() {
     // const marketplaceAddress = chainId ? networkMapping[chainString]?.NftMarketplace[0] : null
     const marketplaceAddress = chainId
         ? networkMapping[chainString]?.NftMarketplace[0]
-        : "0x4f569DA63a4c349fF96962Db5f2F7Eb0E9380640"
+        : "0x7813F14FBA40009A21bAB2EF0C83860786045Ea8"
     console.log("marketplaceAddress:", marketplaceAddress)
 
     // const chainString = chainId ? parseInt(chainId).toString() : null
