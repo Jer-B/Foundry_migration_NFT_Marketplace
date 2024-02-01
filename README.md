@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# DEMO
+# DEMO NFT Marketplace
 
 [https://foundry-migration-nft-marketplace.vercel.app/](https://foundry-migration-nft-marketplace.vercel.app/)
 
@@ -8,25 +8,15 @@
 
 # Note: This is a work in progress
 
-- [Work in progress] Initially made for the Kovan Network. Migration in progress to Sepolia testnet.
-- [Work in progress] As Ethers.js V5 is deprecated for the use of Sepolia testnet on the front-end, I am currently updating the code to Ethers.js V6.
-- [Work in progress] UseDapp is also deprecated, waiting them to update and adapt to Ethers.js V6.
-- [Work in progress] A change from `Ethers` to `Viem` is in consideration
-- Meaning the front-end use a deprecated version of almost everything, but it still works.
-- Due to the above deprecation, make sure to use the NodeJs version `16.13.2` and the react version `^17.0.2`.
+- [Work in progress] Initially made for the Goerli Network. Migration in progress to Sepolia testnet.
+- [Work in progress] A change to `Viem` is in consideration
 
 ## DApp Overview
 
-This is a DApp built with React. It provides the following features:
+- This is an NFT marketplace where users can sell, buy, and cancel the sale of their NFTs.
+- When an NFT is sold, the amount of ETH used to purchase it is automatically transferred to the seller.
 
-- **Staking Tokens**: Users can stake the following tokens:
-
-  - DAI
-  - WETH
-
-- **Rewards**: Depending on the staking period, users are rewarded with "DAPP" tokens.
-
-- **Unstaking**: Users can unstake their initial stakes or their accumulated rewards at any time.
+- On-chain events are captured with a subgraph.
 
 ## Getting Started
 
@@ -59,7 +49,7 @@ forge install cyfrin/foundry-devops@0.0.11 --no-commit && forge install OpenZepp
 - Replace RPC, Private Key and Etherscan API key by yours.
 
 ```
-forge script script/WalletFactory.s.sol --rpc-url [YOUR RPC API KEY] --private-key [YOUR PRIVATE KEY] --broadcast --etherscan-api-key [YOUR ETHERSCAN API KEY] -vvv
+forge script script/DeployNftMarketplace.s.sol:DeployNftMarketplace --rpc-url [YOUR RPC API KEY] --private-key [YOUR PRIVATE KEY] --broadcast --etherscan-api-key [YOUR ETHERSCAN API KEY] -vvv
 ```
 
 - Replace the contract address by your deployed WalletFactory contract address in the `.env` file :
@@ -81,7 +71,6 @@ NEXT_PUBLIC_STACKUP_API_KEY=" YOUR STACKUP API KEY "
 ### NexJS Initialization
 
 - Change directory
-- Recall: Due to the above deprecation, make sure to use the NodeJs version `16.13.2` and the react version `^17.0.2`.
 
 ```bash
 cd Foundry_migration_NFT_Marketplace/front-end
@@ -109,6 +98,21 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Subgraph Initialization
+
+- Change directory
+
+```
+cd graphql-client
+```
+
+- Install dependencies
+
+```
+yarn install
+```
+
 <br />
 <br />
 
@@ -118,25 +122,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # 注意: これは作業中です
 
-- [作業中] 最初は Kovan ネットワーク用に作成されました。現在 Sepolia テストネットへの移行が進行中です。
-- [作業中] Ethers.js V5 は Sepolia テストネットのフロントエンド使用が非推奨になったため、現在 Ethers.js V6 へのコード更新を行っています。
-- [作業中] UseDapp も非推奨になっており、Ethers.js V6 に対応するための更新を待っています。
-- [作業中] `Ethers` から `Viem` への変更が検討中です。
-- フロントエンドはほとんど全てのものが非推奨のバージョンを使用していますが、まだ動作しています。
-- 上記の情報の関係で NodeJs のバージョンは `16.13.2` 、React のバージョンは `^17.0.2` を使用してください。
+- [作業中] 最初は Goerli ネットワーク用に作成されました。現在 Sepolia テストネットへの移行が進行中です。
+- [作業中] `Viem` への変更が検討中です。
 
 ## DApp 概要
 
-これは React で構築された DApp です。以下の機能を提供します：
+- NFT のマーケットプレイスです。ユーザーが NFT を売買および販売をキャンセルできる NFT マーケットプレイスです。
+- NFT が売れた場合、購入に使用された ETH の金額は自動的に売り手に転送されます。
 
-- **トークンのステーキング**：ユーザーは以下のトークンをステーキングできます：
-
-  - DAI
-  - WETH
-
-- **報酬**：ステーキング期間に応じて、ユーザーは"DAPP"トークンで報酬を受け取ります。
-
-- **アンステーキング**：ユーザーはいつでも初期のステーキングや時間とともに蓄積された報酬をアンステーキングできます。
+- オンチェーンイベントはサブグラフで捕捉されます。
 
 ## はじめに
 
@@ -169,7 +163,7 @@ forge install cyfrin/foundry-devops@0.0.11 --no-commit && forge install OpenZepp
 - RPC、プライベートキー、Etherscan の API キーをあなたのものに置き換えてください。
 
 ```
-forge script script/WalletFactory.s.sol --rpc-url [YOUR RPC API KEY] --private-key [YOUR PRIVATE KEY] --broadcast --etherscan-api-key [YOUR ETHERSCAN API KEY] -vvv
+forge script script/DeployNftMarketplace.s.sol:DeployNftMarketplace --rpc-url [YOUR RPC API KEY] --private-key [YOUR PRIVATE KEY] --broadcast --etherscan-api-key [YOUR ETHERSCAN API KEY] -vvv
 ```
 
 - `.env` ファイル内のコントラクトアドレスを、デプロイ済みの WalletFactory コントラクトアドレスに置き換えてください。
@@ -191,7 +185,6 @@ NEXT_PUBLIC_STACKUP_API_KEY=" YOUR STACKUP API KEY "
 ### NextJs の初期化
 
 - ディレクトリを変更
-- 再考：　 NodeJs のバージョンは `16.13.2` 、React のバージョンは `^17.0.2` を使用してください。
 
 ```bash
 cd Foundry_migration_NFT_Marketplace/front-end
@@ -219,3 +212,17 @@ yarn dev
 ```
 
 ブラウザで[http://localhost:3000](http://localhost:3000)を開いて結果を確認します。
+
+### Subgraph の初期化
+
+- ディレクトリを変更
+
+```
+cd graphql-client
+```
+
+- 依存関係をインストールする
+
+```
+yarn install
+```
