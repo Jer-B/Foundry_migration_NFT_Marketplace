@@ -13,8 +13,8 @@ export default function Home() {
     const chainString = chainId ? parseInt(chainId).toString() : "11155111"
     const marketplaceAddress = chainId
         ? networkMapping[chainString]?.NftMarketplace[0]
-        : "0x7813F14FBA40009A21bAB2EF0C83860786045Ea8"
-    //const dispatch = useNotification()
+        : "0x4f569DA63a4c349fF96962Db5f2F7Eb0E9380640"
+    const dispatch = useNotification()
     const [proceeds, setProceeds] = useState("0")
 
     const { runContractFunction } = useWeb3Contract()
@@ -37,15 +37,16 @@ export default function Home() {
 
         await runContractFunction({
             params: approveOptions,
-            onSuccess: () => handleApproveSuccess(nftAddress, tokenId, price),
+            onSuccess: (tx) => handleApproveSuccess(tx, nftAddress, tokenId, price),
             onError: (error) => {
                 console.log(error)
             },
         })
     }
 
-    async function handleApproveSuccess(nftAddress, tokenId, price) {
-        console.log("Ok! Now time to list")
+    async function handleApproveSuccess(tx, nftAddress, tokenId, price) {
+        console.log("Ok! Listing the NFT...")
+        await tx.wait()
         const listOptions = {
             abi: nftMarketplaceAbi,
             contractAddress: marketplaceAddress,
@@ -64,8 +65,9 @@ export default function Home() {
         })
     }
 
-    async function handleListSuccess(tx) {
-        await tx.wait(1)
+    // async function handleListSuccess(tx) {
+    async function handleListSuccess() {
+        // await tx.wait(1)
         dispatch({
             type: "success",
             message: "NFT listing",
@@ -74,8 +76,9 @@ export default function Home() {
         })
     }
 
-    const handleWithdrawSuccess = async (tx) => {
-        await tx.wait(1)
+    // const handleWithdrawSuccess = async (tx) => {
+    const handleWithdrawSuccess = async () => {
+        // await tx.wait(1)
         dispatch({
             type: "success",
             message: "Withdrawing proceeds",

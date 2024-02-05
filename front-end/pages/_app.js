@@ -4,6 +4,7 @@ import { MoralisProvider } from "react-moralis"
 import Header from "../components/header"
 import Head from "next/head"
 import { NotificationProvider } from "web3uikit"
+import Footer from "@/components/footer"
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client"
 
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }) {
                     <NotificationProvider>
                         <Header />
                         <Component {...pageProps} />
+                        <Footer />
                     </NotificationProvider>
                 </ApolloProvider>
             </MoralisProvider>

@@ -4,8 +4,8 @@ import Image from "next/image"
 import { useMoralis } from "react-moralis"
 import NFTBox from "../components/NFTBox"
 import networkMapping from "../constants/networkMapping.json"
+import GET_ACTIVE_ITEMS from "../constants/subgraphQueries"
 import { useQuery } from "@apollo/client"
-import GET_ACTIVE_ITEMS from "@/constants/subgraphQueries"
 
 export default function Home() {
     // const { isWeb3Enabled, chainId } = useMoralis()
@@ -19,7 +19,7 @@ export default function Home() {
     // const marketplaceAddress = chainId ? networkMapping[chainString]?.NftMarketplace[0] : null
     const marketplaceAddress = chainId
         ? networkMapping[chainString]?.NftMarketplace[0]
-        : "0x7813F14FBA40009A21bAB2EF0C83860786045Ea8"
+        : "0x4f569DA63a4c349fF96962Db5f2F7Eb0E9380640"
     console.log("marketplaceAddress:", marketplaceAddress)
 
     // const chainString = chainId ? parseInt(chainId).toString() : null
@@ -59,6 +59,7 @@ export default function Home() {
                     <div>Web3 Currently Not Enabled</div>
                 )}
         </div> */}
+
             <div className="flex flex-wrap">
                 {isWeb3Enabled && chainId ? (
                     loading || !listedNfts ? (
@@ -86,6 +87,34 @@ export default function Home() {
                     <div>Web3 Currently Not Enabled</div>
                 )}
             </div>
+
+            {/* <div className="flex flex-wrap">
+                {isWeb3Enabled && chainId ? (
+                    loading || !listedNfts ? (
+                        <div>Loading...</div>
+                    ) : (
+                        listedNfts.activeItems.map((nft) => {
+                            const { price, nftAddress, tokenId, seller } = nft
+                            return marketplaceAddress ? (
+                                <NFTBox
+                                    price={price}
+                                    nftAddress={nftAddress}
+                                    tokenId={tokenId}
+                                    marketplaceAddress={marketplaceAddress}
+                                    seller={seller}
+                                    key={`${nftAddress}${tokenId}`}
+                                />
+                            ) : (
+                                <div>
+                                    Wrong Network, switch to a supported network. (Ie: Sepolia)
+                                </div>
+                            )
+                        })
+                    )
+                ) : (
+                    <div>Web3 Currently Not Enabled</div>
+                )}
+            </div> */}
         </div>
     )
 }
